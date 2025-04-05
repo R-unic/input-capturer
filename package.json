@@ -1,0 +1,33 @@
+{
+  "name": "@rbxts/input-capturer",
+  "version": "0.1.0",
+  "main": "out/init.lua",
+  "scripts": {
+    "build": "rbxtsc",
+    "watch": "rbxtsc -w",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "types": "out/index.d.ts",
+  "files": [
+    "out",
+    "!**/*.tsbuildinfo"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@rbxts/compiler-types": "^3.0.0-types.0",
+    "@rbxts/services": "^1.5.5",
+    "@rbxts/types": "^1.0.845",
+    "rbxts-transformer-flamework": "^1.2.4",
+    "roblox-ts": "^3.0.0",
+    "typescript": "=5.5.3"
+  },
+  "dependencies": {
+    "@rbxts/flamework-binary-serializer": "^0.6.0"
+  }
+}
