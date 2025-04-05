@@ -8,4 +8,4 @@ export interface InputEntry {
   readonly time: DataType.f32;
 }
 
-export type InputData = DataType.Packed<InputEntry[]>;
+export type InputData = DataType.Packed<DataType.Packed<InputEntry>[]>;

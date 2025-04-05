@@ -7,10 +7,16 @@
     "watch": "rbxtsc -w",
     "prepublishOnly": "npm run build"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "rbxts",
+    "roblox",
+    "input",
+    "capture",
+    "replay"
+  ],
+  "author": "runicly",
   "license": "ISC",
-  "description": "",
+  "description": "A Roblox module to capture inputs and replay them later",
   "types": "out/index.d.ts",
   "files": [
     "out",
