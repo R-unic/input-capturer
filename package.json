@@ -14,6 +14,10 @@
     "capture",
     "replay"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/R-unic/input-capturer.git"
+  },
   "author": "runicly",
   "license": "ISC",
   "description": "A Roblox module to capture inputs and replay them later",
