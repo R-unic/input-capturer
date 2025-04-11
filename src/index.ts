@@ -1,7 +1,7 @@
 import { RunService, UserInputService } from "@rbxts/services";
 
-import type { InputEntry } from "./structs";
 import { deserialize, serialize } from "./serde";
+import type { InputEntry } from "./structs";
 
 if (!RunService.IsClient())
   throw "[@rbxts/input-capturer]: Cannot run input capturer on server";
@@ -9,18 +9,22 @@ if (!RunService.IsClient())
 namespace InputCapturer {
   const capturedInputs: InputEntry[] = [];
   let capturingInput = false;
+  let capturingInputChanged = false;
   let inputTime = 0;
 
   /**
    * Starts capturing input. If capturing is already started, this function does nothing.
    * To capture input, this function must be called before the input is given.
    * After calling this function, all input given will be captured until {@link stop()} is called.
+   *
+   * @param captureInputChanged If true, inputs from the input changed event will be captured, such as mouse movement.
    */
-  export function start(): void {
+  export function start(captureInputChanged = false): void {
     if (capturingInput) return;
     capturedInputs.clear();
     inputTime = 0;
     capturingInput = true;
+    capturingInputChanged = captureInputChanged;
   }
 
   /** Stops capturing input. If capturing is already stopped, this function does nothing. */
@@ -76,6 +80,10 @@ namespace InputCapturer {
 
   UserInputService.InputBegan.Connect(trackInput);
   UserInputService.InputEnded.Connect(trackInput);
+  UserInputService.InputChanged.Connect((input, gameProcessedEvent) => {
+    if (!capturingInputChanged) return;
+    trackInput(input, gameProcessedEvent);
+  });
   RunService.RenderStepped.Connect(dt => {
     if (!capturingInput) return;
     inputTime += dt;
